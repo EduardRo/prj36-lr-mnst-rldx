@@ -9,6 +9,11 @@ class App extends Component {
     counter: 0,
     amici: ['Ionescu', 'Popescu', 'Andreescu', 'Muiescu'],
     txt: '',
+    monsters: [
+      { name: 'Frankenstein' },
+      { name: 'Dracula' },
+      { name: 'Zombie' },
+    ],
   };
 
   apasaButton = (e) => {
@@ -16,11 +21,11 @@ class App extends Component {
     this.setState({ name: 'vasile' });
     this.setState({ string: 'asta-i stringul functiei apasaButton' });
     this.setState({ counter: this.state.counter + 1 });
-    const newTxt = this.arataText('bla bla bla text');
+    const newTxt = this.arataText(this.state.amici);
     this.setState({ txt: newTxt });
   };
-  arataText(gigel) {
-    return gigel + ' continuarea textului';
+  arataText(am) {
+    return am.map((person, index) => <p key={index}>{person}</p>);
   }
 
   render() {
@@ -41,7 +46,15 @@ class App extends Component {
           >
             Schimba
           </button>
-          <p>{this.state.txt}</p>
+          <div>{this.state.txt}</div>
+
+          {this.state.monsters.map((person, index) => {
+            return (
+              <h1 key={index}>
+                {index}-{person.name}
+              </h1>
+            );
+          })}
         </div>
       </div>
     );
