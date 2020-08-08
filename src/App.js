@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
+import CardList from './components/card-list/card-list.component';
 
 class App extends Component {
   state = {
@@ -9,12 +10,15 @@ class App extends Component {
     counter: 0,
     amici: ['Ionescu', 'Popescu', 'Andreescu', 'Muiescu'],
     txt: '',
-    monsters: [
-      { name: 'Frankenstein' },
-      { name: 'Dracula' },
-      { name: 'Zombie' },
-    ],
+    monsters: [],
+    agenda: [],
   };
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) => this.setState({ monsters: users }));
+  }
 
   apasaButton = (e) => {
     //alert(this.state.string);
@@ -23,6 +27,7 @@ class App extends Component {
     this.setState({ counter: this.state.counter + 1 });
     const newTxt = this.arataText(this.state.amici);
     this.setState({ txt: newTxt });
+    console.log(this.state.agenda);
   };
   arataText(am) {
     return am.map((person, index) => <p key={index}>{person}</p>);
@@ -37,6 +42,7 @@ class App extends Component {
           <p style={{ color: 'blue', fontFamily: 'arial', fontWeight: '100' }}>
             My Name is {this.state.name} counter {this.state.counter}
           </p>
+          <div>{this.state.agenda}</div>
           <button onClick={this.apasaButton}>Apasa bai tarane!</button>
           <button
             onClick={() => {
@@ -46,14 +52,11 @@ class App extends Component {
           >
             Schimba
           </button>
+
           <div>{this.state.txt}</div>
 
           {this.state.monsters.map((person, index) => {
-            return (
-              <h1 key={index}>
-                {index}-{person.name}
-              </h1>
-            );
+            return <CardList name={person.name} />;
           })}
         </div>
       </div>
