@@ -1,11 +1,8 @@
 import React from 'react';
 
 const CardList = (props) => {
-  return (
-    <div key={props.index}>
-      cardul meu bitches {props.name} index:{props.index}
-    </div>
-  );
+  console.log(props.index);
+  return <div>My Card: {props.name}</div>;
 };
 
 export default CardList;

@@ -8,7 +8,7 @@ class App extends Component {
     string: 'Hello Man',
     name: 'gigel',
     counter: 0,
-    amici: ['Ionescu', 'Popescu', 'Andreescu', 'Muiescu'],
+    amici: ['Ionescu', 'Popescu', 'Andreescu', 'Marinescu'],
     txt: '',
     monsters: [],
     agenda: [],
@@ -37,14 +37,14 @@ class App extends Component {
     return (
       <div className='App'>
         <header className='App-header'>This is the Header</header>
-        <CardList name={this.state.name} />
+
         <div>
           <p>{this.state.string}</p>
           <p style={{ color: 'blue', fontFamily: 'arial', fontWeight: '100' }}>
             My Name is {this.state.name} counter {this.state.counter}
           </p>
           <div>{this.state.agenda}</div>
-          <button onClick={this.apasaButton}>Apasa bai tarane!</button>
+          <button onClick={this.apasaButton}>Press Button</button>
           <button
             onClick={() => {
               this.setState({ string: 'am schimbat stringul' });
@@ -57,7 +57,7 @@ class App extends Component {
           <div>{this.state.txt}</div>
 
           {this.state.monsters.map((person, index) => {
-            return <CardList name={person.name} index={index} />;
+            return <CardList name={person.name} key={person.id} />;
           })}
         </div>
       </div>
