@@ -37,6 +37,7 @@ class App extends Component {
     return (
       <div className='App'>
         <header className='App-header'>This is the Header</header>
+        <CardList name={this.state.name} />
         <div>
           <p>{this.state.string}</p>
           <p style={{ color: 'blue', fontFamily: 'arial', fontWeight: '100' }}>
@@ -56,7 +57,7 @@ class App extends Component {
           <div>{this.state.txt}</div>
 
           {this.state.monsters.map((person, index) => {
-            return <CardList name={person.name} />;
+            return <CardList name={person.name} index={index} />;
           })}
         </div>
       </div>
