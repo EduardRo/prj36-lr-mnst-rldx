@@ -12,6 +12,7 @@ class App extends Component {
     txt: '',
     monsters: [],
     agenda: [],
+    searchField: '',
   };
 
   componentDidMount() {
@@ -56,9 +57,7 @@ class App extends Component {
 
           <div>{this.state.txt}</div>
 
-          {this.state.monsters.map((person, index) => {
-            return <CardList name={person.name} key={person.id} />;
-          })}
+          <CardList monsters={this.state.monsters}></CardList>
         </div>
       </div>
     );
