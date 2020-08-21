@@ -35,9 +35,23 @@ class App extends Component {
   }
 
   render() {
+    const { monsters, searchField } = this.state;
+    /*const filteredMonsters = monsters.fielter((monster) =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    ); */
+
+    const filteredMonsters = monsters.filter((e) =>
+      e.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
     return (
       <div className='App'>
-        <header className='App-header'>This is the Header</header>
+        <header className='App-header'>
+          <input
+            placeholder='search'
+            onChange={(e) => this.setState({ searchField: e.target.value })}
+          />
+        </header>
 
         <div>
           <p>{this.state.string}</p>
@@ -57,7 +71,7 @@ class App extends Component {
 
           <div>{this.state.txt}</div>
 
-          <CardList monsters={this.state.monsters}></CardList>
+          <CardList monsters={filteredMonsters}></CardList>
         </div>
       </div>
     );
