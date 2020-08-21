@@ -35,6 +35,10 @@ class App extends Component {
     return am.map((person, index) => <p key={index}>{person}</p>);
   }
 
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value });
+  };
+
   render() {
     const { monsters, searchField } = this.state;
     /*const filteredMonsters = monsters.fielter((monster) =>
@@ -47,31 +51,12 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <h1>People Rolodex</h1>
         <header className='App-header'>
-          <SearchBox
-            placeholder='search'
-            handleChange={(e) => this.setState({ searchField: e.target.value })}
-          />
+          <SearchBox placeholder='search' handleChange={this.handleChange} />
         </header>
 
         <div>
-          <p>{this.state.string}</p>
-          <p style={{ color: 'blue', fontFamily: 'arial', fontWeight: '100' }}>
-            My Name is {this.state.name} counter {this.state.counter}
-          </p>
-          <div>{this.state.agenda}</div>
-          <button onClick={this.apasaButton}>Press Button</button>
-          <button
-            onClick={() => {
-              this.setState({ string: 'am schimbat stringul' });
-              this.setState({ txt: '' });
-            }}
-          >
-            Schimba
-          </button>
-
-          <div>{this.state.txt}</div>
-
           <CardList monsters={filteredMonsters}></CardList>
         </div>
       </div>
